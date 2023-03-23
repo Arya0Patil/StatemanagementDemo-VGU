@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:state_management_demo/screens/homescreen.dart';
 import 'package:provider/provider.dart';
+import 'package:state_management_demo/screens/loginForm.dart';
 import 'package:state_management_demo/screens/providers/counterProvider.dart';
 
 void main() {
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const MyHomePage(title: 'Flutter Demo Home Page'),
+        home: LoginForm(),
       ),
     );
   }
