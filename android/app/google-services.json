@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "154131959096",
+    "project_id": "vgu-demo",
+    "storage_bucket": "vgu-demo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:154131959096:android:db0c0ac3776ceb365d45cd",
+        "android_client_info": {
+          "package_name": "com.example.state_management_demo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "154131959096-7h9gig0lavd0qi5336i0bnbojgkg417h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcXnqKwiqRA6DVu3k7L0LNU0bIQZyW_oA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "154131959096-7h9gig0lavd0qi5336i0bnbojgkg417h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

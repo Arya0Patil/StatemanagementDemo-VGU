@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:state_management_demo/screens/displayUser.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -10,17 +11,23 @@ class LoginForm extends StatefulWidget {
 
 class _LoginFormState extends State<LoginForm> {
   final _formKey = GlobalKey<FormState>();
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
-  String email = "";
-  String password = "";
+  TextEditingController _movieNameController = TextEditingController();
+  TextEditingController _actorNameController = TextEditingController();
+  TextEditingController _genreControler = TextEditingController();
+  String movieName = "";
+  String actorName = "";
+  String genre = "";
   bool isVisible = false;
 
   void _setData() {
     setState(() {
-      email = _emailController.text.toString();
-      password = _passwordController.text.toString();
+      movieName = _movieNameController.text.toString();
+      actorName = _actorNameController.text.toString();
+      genre = _genreControler.text.toString();
     });
+    FirebaseFirestore.instance
+        .collection("Movies")
+        .add({"name": movieName, "actor": actorName, "genre": genre});
   }
 
   @override
@@ -33,14 +40,14 @@ class _LoginFormState extends State<LoginForm> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Text("Username"),
+                Text("Film Name"),
                 Container(
                   width: 300,
                   child: TextFormField(
-                    controller: _emailController,
+                    controller: _movieNameController,
                     decoration: InputDecoration(
                         prefixIcon: Icon(Icons.mail),
-                        hintText: "Enter Your username"),
+                        hintText: "Enter Film name"),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter some text';
@@ -49,11 +56,27 @@ class _LoginFormState extends State<LoginForm> {
                     },
                   ),
                 ),
-                Text("Password"),
+                Text(" Actor Name"),
                 Container(
                   width: 300,
                   child: TextFormField(
-                    controller: _passwordController,
+                    controller: _actorNameController,
+                    decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.mail),
+                        hintText: "Enter Actor Name"),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter some text';
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+                Text("Genre"),
+                Container(
+                  width: 300,
+                  child: TextFormField(
+                    controller: _genreControler,
                     obscureText: isVisible,
                     decoration: InputDecoration(
                         prefixIcon: Icon(Icons.key),
@@ -72,7 +95,7 @@ class _LoginFormState extends State<LoginForm> {
                             child: isVisible
                                 ? Icon(Icons.visibility)
                                 : Icon(Icons.visibility_off)),
-                        hintText: "Enter Your Password"),
+                        hintText: ""),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter some text';
@@ -95,8 +118,8 @@ class _LoginFormState extends State<LoginForm> {
                           context,
                           MaterialPageRoute<void>(
                             builder: (BuildContext context) => ShowUser(
-                              email: email,
-                              pass: password,
+                              email: movieName,
+                              pass: actorName,
                             ),
                           ));
                     }
